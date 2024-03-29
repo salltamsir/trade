@@ -5,8 +5,8 @@ import java.time.LocalDate;
 public interface TradeValidator {
 
     String validateReference(String reference);
-    LocalDate validateDate(String dateStr);
+    LocalDate validateDate(String dateStr, String field);
     String validateSymbol(String symbol);
     String validateCurrency(String currency);
-    double validateDouble(String doubleStr, String message);
+    float validateFloat(String floatStr, String field);
 }

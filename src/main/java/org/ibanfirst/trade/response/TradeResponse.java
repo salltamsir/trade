@@ -16,9 +16,9 @@ public class TradeResponse {
     private LocalDate tradeDate;
     private String symbol;
     private String currency;
-    private Double amount;
-    private Double amountCounterValue;
-    private Double rate;
+    private Float amount;
+    private Float amountCounterValue;
+    private Float rate;
     private LocalDate valueDate;
     public static TradeResponse fromTrade(Trade trade){
         return TradeResponse.builder()
