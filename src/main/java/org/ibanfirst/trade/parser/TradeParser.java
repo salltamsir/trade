@@ -29,9 +29,9 @@ public class TradeParser {
         trade.setCurrency(currency);
         String buyCurrency = findPattern(Config.getProperty(Constants.BUY_CURRENCY_REGEX), text);
         trade.setSymbol(validator.validateSymbol(buyCurrency + currency));
-        trade.setAmount(validator.validateFloat(toDoubleFormat(findPattern(Config.getProperty(Constants.AMOUNT_SELL_REGEX), text)), "amount"));
-        trade.setAmountCounterValue(validator.validateFloat(toDoubleFormat(findPattern(Config.getProperty(Constants.AMOUNT_BUY_REGEX), text)),"amount counter value"));
-        trade.setRate(validator.validateFloat(toDoubleFormat(findPattern(Config.getProperty(Constants.RATE_REGEX), text)), "rate"));
+        trade.setAmount(validator.validateFloat(toFloatFormat(findPattern(Config.getProperty(Constants.AMOUNT_SELL_REGEX), text)), "amount"));
+        trade.setAmountCounterValue(validator.validateFloat(toFloatFormat(findPattern(Config.getProperty(Constants.AMOUNT_BUY_REGEX), text)),"amount counter value"));
+        trade.setRate(validator.validateFloat(toFloatFormat(findPattern(Config.getProperty(Constants.RATE_REGEX), text)), "rate"));
         trade.setValueDate(validator.validateDate(findPattern(Config.getProperty(Constants.VALUE_DATE_REGEX), text), "value date"));
 
         return trade;
@@ -52,7 +52,7 @@ public class TradeParser {
         }
         return "";
     }
-    private String toDoubleFormat(String numberStr) {
+    private String toFloatFormat(String numberStr) {
         return numberStr.replace(",", "");
     }
 }
