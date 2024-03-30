@@ -10,6 +10,13 @@ import java.util.regex.Pattern;
 
 public class TradeParser {
 
+    /**
+     * Converts a text representing an email into a Trade object.
+     *
+     * @param text      The text representing the email.
+     * @param validator The validator of the mail content.
+     * @return A Trade object created from the extracted data.
+     */
     public static Trade tradeFromString(String text, TradeValidator validator){
 
         Trade trade = new Trade();
@@ -28,6 +35,13 @@ public class TradeParser {
         return trade;
 
     }
+    /**
+     * Finds a substring in the given text that matches the specified regular expression.
+     *
+     * @param regex The regular expression pattern.
+     * @param text  The input text to search within.
+     * @return The substring corresponding to the regex if found, or an empty string if not found.
+     */
     private static String findPattern(String regex, String text) {
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(text);
