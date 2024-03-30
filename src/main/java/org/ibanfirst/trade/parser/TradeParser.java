@@ -52,6 +52,12 @@ public class TradeParser {
         }
         return "";
     }
+    /**
+     * Converts a string from number format xx,yy.zz to java float format
+     *
+     * @param numberStr  String representing number in  format xx,yy.zz
+     * @return Converted string representing number in java float format
+     */
     private String toFloatFormat(String numberStr) {
         return numberStr.replace(",", "");
     }
