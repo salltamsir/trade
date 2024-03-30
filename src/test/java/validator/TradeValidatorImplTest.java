@@ -2,7 +2,6 @@ package validator;
 
 import org.ibanfirst.trade.model.Trade;
 import org.ibanfirst.trade.parser.TradeParser;
-import org.ibanfirst.trade.validator.TradeValidator;
 import org.ibanfirst.trade.validator.TradeValidatorImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -13,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class TradeValidatorImplTest {
-    private TradeValidator validator = new TradeValidatorImpl();
+    private TradeParser tradeParser = new TradeParser(new TradeValidatorImpl());
     @Test
     void testFromString_ValidTrade_624916332() {
         String text = """
@@ -41,7 +40,7 @@ class TradeValidatorImplTest {
                 Kind Regards,
                 """;
 
-        Trade trade = TradeParser.tradeFromString(text, validator);
+        Trade trade = tradeParser.tradeFromString(text);
 
         Assertions.assertNotNull(trade);
 
@@ -83,7 +82,7 @@ class TradeValidatorImplTest {
                                 
                 """;
 
-        Trade trade = TradeParser.tradeFromString(text, validator);
+        Trade trade = tradeParser.tradeFromString(text);
 
         Assertions.assertNotNull(trade);
 
@@ -125,7 +124,7 @@ class TradeValidatorImplTest {
                                 
                 """;
 
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, ()->TradeParser.tradeFromString(text, validator));
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, ()->tradeParser.tradeFromString(text));
         assertEquals("Missing required field reference", exception.getMessage());
 
     }
@@ -158,7 +157,7 @@ class TradeValidatorImplTest {
                                 
                 """;
 
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, ()->TradeParser.tradeFromString(text, validator));
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, ()->tradeParser.tradeFromString(text));
         assertEquals("Missing required field currency", exception.getMessage());
     }
 }

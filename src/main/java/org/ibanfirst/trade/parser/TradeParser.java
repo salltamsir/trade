@@ -1,5 +1,6 @@
 package org.ibanfirst.trade.parser;
 
+import lombok.AllArgsConstructor;
 import org.ibanfirst.trade.config.Config;
 import org.ibanfirst.trade.model.Trade;
 import org.ibanfirst.trade.utils.Constants;
@@ -8,16 +9,17 @@ import org.ibanfirst.trade.validator.TradeValidator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+@AllArgsConstructor
 public class TradeParser {
 
+    private TradeValidator validator;
     /**
      * Converts a text representing an email into a Trade object.
      *
      * @param text      The text representing the email.
-     * @param validator The validator of the mail content.
      * @return A Trade object created from the extracted data.
      */
-    public static Trade tradeFromString(String text, TradeValidator validator){
+    public Trade tradeFromString(String text){
 
         Trade trade = new Trade();
 
@@ -42,7 +44,7 @@ public class TradeParser {
      * @param text  The input text to search within.
      * @return The substring corresponding to the regex if found, or an empty string if not found.
      */
-    private static String findPattern(String regex, String text) {
+    private String findPattern(String regex, String text) {
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(text);
         if (matcher.find()) {
@@ -50,7 +52,7 @@ public class TradeParser {
         }
         return "";
     }
-    private static String toDoubleFormat(String numberStr) {
+    private String toDoubleFormat(String numberStr) {
         return numberStr.replace(",", "");
     }
 }

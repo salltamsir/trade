@@ -39,8 +39,9 @@ public class Main {
         return new String(fileBytes);
     }
     private static void parseString(String fileContent) throws JsonProcessingException {
+        TradeParser tradeParser = new TradeParser(new TradeValidatorImpl());
         try {
-            Trade trade = TradeParser.tradeFromString(fileContent, new TradeValidatorImpl());
+            Trade trade = tradeParser.tradeFromString(fileContent);
             System.out.println(CustomObjectMapper.getInstance().writeValueAsString(TradeResponse.fromTrade(trade)));
         } catch (IllegalArgumentException illegalArgumentException){
             System.err.println(CustomObjectMapper.getInstance().writeValueAsString(new ErrorResponse(illegalArgumentException.getMessage())));
