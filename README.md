@@ -15,6 +15,13 @@ Make sure you have the following installed on your machine:
    - **cd trade**
    
 ## Execution
+### Unix system
+1. Make sure you have rights to execute the script
+   - **chmod 777 run.sh**
 
-Execute the run.sh script with one argument representing the absolute path of trade confirmation file
+2. Execute the run.sh script with one argument representing the absolute path of trade confirmation file
    - **./run.sh path_to_file**
+
+### Windows system
+- **To be updated**
+
