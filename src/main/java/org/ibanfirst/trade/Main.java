@@ -27,6 +27,7 @@ public class Main {
         }
         parseString(fileContent);
     }
+
     public static String readFileAsString(String filePath) {
         byte[] fileBytes = new byte[0];
         try {

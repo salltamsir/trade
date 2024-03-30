@@ -14,16 +14,16 @@ public class TradeParser {
 
         Trade trade = new Trade();
 
-        trade.setReference(validator.validateReference(TradeParser.findPattern(Config.getProperty(Constants.REFERENCE_REGEX), text)));
-        trade.setTradeDate(validator.validateDate(TradeParser.findPattern(Config.getProperty(Constants.TRADE_DATE_REGEX), text), "trade date"));
-        String currency = validator.validateCurrency(TradeParser.findPattern(Config.getProperty(Constants.CURRENCY_REGEX), text));
+        trade.setReference(validator.validateReference(findPattern(Config.getProperty(Constants.REFERENCE_REGEX), text)));
+        trade.setTradeDate(validator.validateDate(findPattern(Config.getProperty(Constants.TRADE_DATE_REGEX), text), "trade date"));
+        String currency = validator.validateCurrency(findPattern(Config.getProperty(Constants.CURRENCY_REGEX), text));
         trade.setCurrency(currency);
-        String buyCurrency = TradeParser.findPattern(Config.getProperty(Constants.BUY_CURRENCY_REGEX), text);
+        String buyCurrency = findPattern(Config.getProperty(Constants.BUY_CURRENCY_REGEX), text);
         trade.setSymbol(validator.validateSymbol(buyCurrency + currency));
-        trade.setAmount(validator.validateFloat(TradeParser.toDoubleFormat(TradeParser.findPattern(Config.getProperty(Constants.AMOUNT_SELL_REGEX), text)), "amount"));
-        trade.setAmountCounterValue(validator.validateFloat(TradeParser.toDoubleFormat(TradeParser.findPattern(Config.getProperty(Constants.AMOUNT_BUY_REGEX), text)),"amount counter value"));
-        trade.setRate(validator.validateFloat(TradeParser.toDoubleFormat(TradeParser.findPattern(Config.getProperty(Constants.RATE_REGEX), text)), "rate"));
-        trade.setValueDate(validator.validateDate(TradeParser.findPattern(Config.getProperty(Constants.VALUE_DATE_REGEX), text), "value date"));
+        trade.setAmount(validator.validateFloat(toDoubleFormat(findPattern(Config.getProperty(Constants.AMOUNT_SELL_REGEX), text)), "amount"));
+        trade.setAmountCounterValue(validator.validateFloat(toDoubleFormat(findPattern(Config.getProperty(Constants.AMOUNT_BUY_REGEX), text)),"amount counter value"));
+        trade.setRate(validator.validateFloat(toDoubleFormat(findPattern(Config.getProperty(Constants.RATE_REGEX), text)), "rate"));
+        trade.setValueDate(validator.validateDate(findPattern(Config.getProperty(Constants.VALUE_DATE_REGEX), text), "value date"));
 
         return trade;
 
