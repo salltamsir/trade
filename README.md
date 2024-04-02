@@ -23,5 +23,9 @@ Make sure you have the following installed on your machine:
    - **./run.sh path_to_file**
 
 ### Windows system
-- **To be updated**
+1. Build project
+   - **mvn clean install**
+2. Run jar with one argument representing the absolute path of trade confirmation file
+   - **java - jar trade-1.0-SNAPSHOT-jar-with-dependencies.jar path_to_file**
+- **Script to be created**
 
