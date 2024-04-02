@@ -20,6 +20,11 @@ public class Main {
            System.exit(1);
         }
         String path = args[0];
+
+        if(!path.endsWith(".txt")){
+            System.err.println("Requires txt file");
+            System.exit(1);
+        }
         String fileContent = readFileAsString(path);
         if (fileContent == null || fileContent.isEmpty()) {
             System.err.println("File is empty");
