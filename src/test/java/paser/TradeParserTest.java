@@ -23,7 +23,7 @@ class TradeParserTest {
     void testValidateReference_NullReference() {
 
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> validator.validateReference(null));
-        assertEquals("Missing field reference", exception.getMessage());
+        assertEquals("Missing required field reference", exception.getMessage());
     }
 
     @Test

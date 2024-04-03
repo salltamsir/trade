@@ -24,15 +24,15 @@ public class TradeParser {
         Trade trade = new Trade();
 
         trade.setReference(validator.validateReference(findPattern(Config.getProperty(Constants.REFERENCE_REGEX), text)));
-        trade.setTradeDate(validator.validateDate(findPattern(Config.getProperty(Constants.TRADE_DATE_REGEX), text), "trade date"));
+        trade.setTradeDate(validator.validateDate(findPattern(Config.getProperty(Constants.TRADE_DATE_REGEX), text), Constants.TRADE_DATE));
         String currency = validator.validateCurrency(findPattern(Config.getProperty(Constants.CURRENCY_REGEX), text));
         trade.setCurrency(currency);
         String buyCurrency = findPattern(Config.getProperty(Constants.BUY_CURRENCY_REGEX), text);
         trade.setSymbol(validator.validateSymbol(buyCurrency + currency));
-        trade.setAmount(validator.validateFloat(toFloatFormat(findPattern(Config.getProperty(Constants.AMOUNT_SELL_REGEX), text)), "amount"));
-        trade.setAmountCounterValue(validator.validateFloat(toFloatFormat(findPattern(Config.getProperty(Constants.AMOUNT_BUY_REGEX), text)),"amount counter value"));
-        trade.setRate(validator.validateFloat(toFloatFormat(findPattern(Config.getProperty(Constants.RATE_REGEX), text)), "rate"));
-        trade.setValueDate(validator.validateDate(findPattern(Config.getProperty(Constants.VALUE_DATE_REGEX), text), "value date"));
+        trade.setAmount(validator.validateFloat(toFloatFormat(findPattern(Config.getProperty(Constants.AMOUNT_SELL_REGEX), text)), Constants.AMOUNT));
+        trade.setAmountCounterValue(validator.validateFloat(toFloatFormat(findPattern(Config.getProperty(Constants.AMOUNT_BUY_REGEX), text)),Constants.AMOUNT_COUNTER_VALUE));
+        trade.setRate(validator.validateFloat(toFloatFormat(findPattern(Config.getProperty(Constants.RATE_REGEX), text)), Constants.rate));
+        trade.setValueDate(validator.validateDate(findPattern(Config.getProperty(Constants.VALUE_DATE_REGEX), text), Constants.VALUE_DATE));
 
         return trade;
 
